@@ -39,7 +39,7 @@ export default function HomePage() {
       // Price filter
       if (filterBy === 'low') return matchesSearch && space.price <= 200
       if (filterBy === 'medium') return matchesSearch && space.price > 200 && space.price <= 350
-      if (filterBy === 'high') return matchesSearch && space.price > 351
+      if (filterBy === 'high') return matchesSearch && space.price > 350
       
       return matchesSearch
     })
