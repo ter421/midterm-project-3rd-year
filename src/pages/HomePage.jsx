@@ -38,8 +38,8 @@ export default function HomePage() {
       
       // Price filter
       if (filterBy === 'low') return matchesSearch && space.price <= 200
-      if (filterBy === 'medium') return matchesSearch && space.price > 200 && space.price <= 349
-      if (filterBy === 'high') return matchesSearch && space.price > 350
+      if (filterBy === 'medium') return matchesSearch && space.price > 200 && space.price <= 350
+      if (filterBy === 'high') return matchesSearch && space.price > 351
       
       return matchesSearch
     })
@@ -118,7 +118,7 @@ export default function HomePage() {
           >
             <option value="all">All prices</option>
             <option value="low">₱0 - ₱200</option>
-            <option value="medium">₱201 - ₱349</option>
+            <option value="medium">₱201 - ₱350</option>
             <option value="high">₱350+</option>
           </select>
         </div>

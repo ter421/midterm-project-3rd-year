@@ -24,8 +24,8 @@ export default function SpaceCard({ space }) {
 
   // Generate price color based on value
   const getPriceColor = (price) => {
-    if (price <= 100) return '#22c55e' // green for low price
-    if (price <= 300) return '#f59e0b' // amber for medium price
+    if (price <= 200) return '#22c55e' // green for low price
+    if (price <= 350) return '#f59e0b' // amber for medium price
     return '#ef4444' // red for high price
   }
 
