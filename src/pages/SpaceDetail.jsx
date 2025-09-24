@@ -171,7 +171,7 @@ export default function SpaceDetail() {
               <div 
                 className="badge px-3 py-2"
                 style={{
-                  background: space.price <= 250 ? '#22c55e' : space.price <= 400 ? '#f59e0b' : '#ef4444',
+                  background: space.price <= 200 ? '#22c55e' : space.price <= 350 ? '#f59e0b' : '#ef4444',
                   color: 'white',
                   fontSize: '1rem',
                   fontWeight: '700'
