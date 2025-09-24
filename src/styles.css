@@ -1065,6 +1065,41 @@ body.dark-mode .modal-backdrop {
   background: rgba(0, 0, 0, 0.7);
 }
 
+/* Dark Mode ConfirmModal Fix - Specific targeting */
+body.dark-mode .modal-backdrop .card h5 {
+  color: var(--text-primary) !important;
+}
+
+body.dark-mode .modal-backdrop .card p {
+  color: var(--text-secondary) !important;
+}
+
+/* Ensure the card itself has proper background and text color */
+body.dark-mode .modal-backdrop .card {
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Make sure all text inside modal cards is visible */
+body.dark-mode .modal-backdrop .card * {
+  color: inherit;
+}
+
+/* Override for specific elements */
+body.dark-mode .modal-backdrop .card h1,
+body.dark-mode .modal-backdrop .card h2,
+body.dark-mode .modal-backdrop .card h3,
+body.dark-mode .modal-backdrop .card h4,
+body.dark-mode .modal-backdrop .card h5,
+body.dark-mode .modal-backdrop .card h6 {
+  color: var(--text-primary) !important;
+}
+
+body.dark-mode .modal-backdrop .card p {
+  color: var(--text-secondary) !important;
+}
+
 body.dark-mode .modal-backdrop .card {
   background: var(--bg-primary);
   border-color: var(--border-color);
