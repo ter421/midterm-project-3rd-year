@@ -24,8 +24,8 @@ export default function SpaceCard({ space }) {
 
   // Generate price color based on value
   const getPriceColor = (price) => {
-    if (price <= 200) return '#22c55e' // green for low price
-    if (price <= 350) return '#f59e0b' // amber for medium price
+    if (price <= 250) return '#22c55e' // green for low price
+    if (price <= 400) return '#f59e0b' // amber for medium price
     return '#ef4444' // red for high price
   }
 
@@ -86,7 +86,7 @@ export default function SpaceCard({ space }) {
           <span 
             className="badge px-3 py-2"
             style={{ 
-              background: getPriceColor(space.price),
+              background: getPriceColor(space.base_price),
               color: 'white',
               fontSize: '0.8rem',
               fontWeight: '700',
@@ -94,7 +94,7 @@ export default function SpaceCard({ space }) {
               boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
             }}
           >
-            ₱{space.price}
+            Full Day Price Starts at ₱{space.base_price}
           </span>
           
           {/* Available time slots indicator */}
@@ -107,7 +107,7 @@ export default function SpaceCard({ space }) {
                 opacity: 0.9
               }}
             >
-              {space.time_slots.length} slots
+              {space.time_slots.length} available time options
             </span>
           )}
         </div>

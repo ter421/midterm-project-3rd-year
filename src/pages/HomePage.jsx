@@ -37,9 +37,9 @@ export default function HomePage() {
                            space.description.toLowerCase().includes(q)
       
       // Price filter
-      if (filterBy === 'low') return matchesSearch && space.price <= 200
-      if (filterBy === 'medium') return matchesSearch && space.price > 200 && space.price <= 350
-      if (filterBy === 'high') return matchesSearch && space.price > 350
+      if (filterBy === 'low') return matchesSearch && space.base_price <= 250
+      if (filterBy === 'medium') return matchesSearch && space.base_price > 250 && space.base_price <= 400
+      if (filterBy === 'high') return matchesSearch && space.base_price > 400
       
       return matchesSearch
     })
@@ -48,7 +48,7 @@ export default function HomePage() {
     return filtered.sort((a, b) => {
       switch (sortBy) {
         case 'price':
-          return a.price - b.price
+          return a.base_price - b.base_price
         case 'location':
           return a.location.localeCompare(b.location)
         default:
@@ -117,9 +117,9 @@ export default function HomePage() {
             onChange={(e) => setFilterBy(e.target.value)}
           >
             <option value="all">All prices</option>
-            <option value="low">₱0 - ₱200</option>
-            <option value="medium">₱201 - ₱350</option>
-            <option value="high">₱350+</option>
+            <option value="low">₱0 - ₱250</option>
+            <option value="medium">₱251 - ₱400</option>
+            <option value="high">₱400+</option>
           </select>
         </div>
 

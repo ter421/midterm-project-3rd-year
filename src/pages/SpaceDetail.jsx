@@ -9,17 +9,30 @@ export default function SpaceDetail() {
   const [space, setSpace] = useState(null)
   const [loading, setLoading] = useState(true)
   const [selectedImage, setSelectedImage] = useState(0)
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null)
+  const [currentPrice, setCurrentPrice] = useState(0)
 
   useEffect(() => {
     // Simulate loading and find space
     const timer = setTimeout(() => {
       const foundSpace = spacesData.find(s => String(s.id) === String(spaceId))
       setSpace(foundSpace)
+      if (foundSpace) {
+        // Set default price to base_price or first time slot price
+        const defaultPrice = foundSpace.base_price || (foundSpace.time_slots?.[0]?.price || foundSpace.price)
+        setCurrentPrice(defaultPrice)
+      }
       setLoading(false)
     }, 300)
 
     return () => clearTimeout(timer)
   }, [spaceId])
+
+  // Handle time slot selection
+  const handleTimeSlotSelect = (timeSlot) => {
+    setSelectedTimeSlot(timeSlot)
+    setCurrentPrice(timeSlot.price)
+  }
 
   if (loading) {
     return (
@@ -171,13 +184,22 @@ export default function SpaceDetail() {
               <div 
                 className="badge px-3 py-2"
                 style={{
-                  background: space.price <= 200 ? '#22c55e' : space.price <= 350 ? '#f59e0b' : '#ef4444',
+                  background: currentPrice <= 200 ? '#22c55e' : currentPrice <= 350 ? '#f59e0b' : '#ef4444',
                   color: 'white',
                   fontSize: '1rem',
                   fontWeight: '700'
                 }}
               >
-                ₱{space.price}/session
+                ₱{currentPrice}
+                {selectedTimeSlot ? (
+                  <small className="ms-1" style={{ fontSize: '0.75rem', opacity: 0.9 }}>
+                    {selectedTimeSlot.name}
+                  </small>
+                ) : (
+                  <small className="ms-1" style={{ fontSize: '0.75rem', opacity: 0.9 }}>
+                    base price
+                  </small>
+                )}
               </div>
             </div>
           </div>
@@ -214,24 +236,70 @@ export default function SpaceDetail() {
             </div>
           </div>
 
-          {/* Time slots */}
+          {/* Time slots with pricing */}
           <div className="mb-4">
-            <h4 className="mb-3">Available Time Slots</h4>
-            <div className="d-flex flex-wrap gap-2">
-              {space.time_slots.map((slot, index) => (
-                <div 
-                  key={index}
-                  className="badge bg-primary"
-                  style={{
-                    padding: '10px 16px',
-                    fontSize: '0.9rem',
-                    borderRadius: '20px',
-                    fontWeight: '500'
-                  }}
-                >
-                  {slot}
+            <h4 className="mb-3">Available Time Slots & Pricing</h4>
+            <div className="row g-3">
+              {/* Handle both old format (string array) and new format (object array) */}
+              {Array.isArray(space.time_slots) && space.time_slots.length > 0 ? (
+                space.time_slots.map((slot, index) => {
+                  // Check if it's the new format (object) or old format (string)
+                  const isNewFormat = typeof slot === 'object' && slot.price !== undefined
+                  const slotName = isNewFormat ? slot.name : slot
+                  const slotPrice = isNewFormat ? slot.price : (space.base_price || space.price)
+                  const slotDescription = isNewFormat ? slot.description : ''
+                  const slotDuration = isNewFormat ? slot.duration : ''
+
+                  return (
+                    <div key={index} className="col-md-6">
+                      <div 
+                        className={`card h-100 ${selectedTimeSlot?.name === slotName ? 'border-primary' : ''}`}
+                        style={{
+                          cursor: 'pointer',
+                          transition: 'all 0.2s',
+                          borderWidth: selectedTimeSlot?.name === slotName ? '2px' : '1px'
+                        }}
+                        onClick={() => handleTimeSlotSelect(isNewFormat ? slot : { name: slotName, price: slotPrice })}
+                      >
+                        <div className="card-body p-3">
+                          <div className="d-flex justify-content-between align-items-start mb-2">
+                            <h6 className="card-title mb-0" style={{ fontWeight: '600' }}>
+                              {slotName}
+                            </h6>
+                            <div 
+                              className="badge"
+                              style={{
+                                background: slotPrice <= 200 ? '#22c55e' : slotPrice <= 350 ? '#f59e0b' : '#ef4444',
+                                color: 'white',
+                                fontWeight: '600'
+                              }}
+                            >
+                              ₱{slotPrice}
+                            </div>
+                          </div>
+                          {slotDuration && (
+                            <div className="text-muted small mb-1">
+                              Duration: {slotDuration}
+                            </div>
+                          )}
+                          {slotDescription && (
+                            <div className="text-muted small">
+                              {slotDescription}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })
+              ) : (
+                <div className="col-12">
+                  <div className="alert alert-info">
+                    <i className="bi bi-info-circle me-2"></i>
+                    Contact the space directly for time slot availability and pricing.
+                  </div>
                 </div>
-              ))}
+              )}
             </div>
           </div>
 
@@ -255,7 +323,11 @@ export default function SpaceDetail() {
         {/* Right column - Booking form */}
         <div className="col-md-4">
           <div className="position-sticky" style={{ top: '2rem' }}>
-            <BookingForm space={space} />
+            <BookingForm 
+              space={space} 
+              selectedTimeSlot={selectedTimeSlot}
+              currentPrice={currentPrice}
+            />
             
             {/* Additional info card */}
             <div className="card mt-4 p-3">

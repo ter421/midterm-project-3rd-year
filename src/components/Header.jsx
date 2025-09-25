@@ -84,11 +84,11 @@ export default function Header() {
           </button>
           <div className="collapse navbar-collapse" id="nav">
             <ul className="navbar-nav me-auto">
+            </ul>
+            <ul className="navbar-nav ms-auto">
               <li className="nav-item">
                 <NavLink className="nav-link" to="/">Home</NavLink>
               </li>
-            </ul>
-            <ul className="navbar-nav ms-auto">
               {user ? (
                 <>
                   <li className="nav-item">

@@ -3,25 +3,38 @@
     "id": 1,
     "name": "Studeo Spaces Study Hub",
     "location": "Sampaloc, Manila",
-    "price": 250,
+    "base_price": 250,
     "main_image": "/assets/studeo/study1.jpg",
     "images": ["/assets/studeo/study1_1.jpg", "/assets/studeo/study1_2.jpg"],
     "description": "A student-focused study hub with solo, tandem, and group rooms. Quiet, air-conditioned, and study-friendly.",
     "amenities": [
       "High-Speed WiFi",
-      "Air Conditioning",
+      "Air Conditioning", 
       "Group Rooms",
       "Snack Bar",
       "Extended Hours"
     ],
     "hours": "8:00 AM – 12:00 MN",
-    "time_slots": ["All Day Pass", "All Night Pass"]
+    "time_slots": [
+      {
+        "name": "All Day Pass",
+        "duration": "16 hours",
+        "price": 250,
+        "description": "8:00 AM - 12:00 MN"
+      },
+      {
+        "name": "All Night Pass", 
+        "duration": "8 hours",
+        "price": 180,
+        "description": "12:00 MN - 8:00 AM"
+      }
+    ]
   },
   {
     "id": 2,
     "name": "Shared Spaces Coworking Pad",
     "location": "Metro Manila",
-    "price": 380,
+    "base_price": 380,
     "main_image": "/assets/shared spaces/shared1.jpg",
     "images": ["/assets/shared spaces/shared1_1.jpg", "/assets/shared spaces/shared1_2.jpg"],
     "description": "A comfortable coworking and study space with flexible passes and affordable monthly options.",
@@ -29,17 +42,36 @@
       "WiFi",
       "Air Conditioning",
       "Free Coffee",
-      "Meeting Rooms",
+      "Meeting Rooms", 
       "Printing Services"
     ],
     "hours": "8:00 AM – 10:00 PM",
-    "time_slots": ["Hourly Pass", "Day Pass", "Monthly Pass"]
+    "time_slots": [
+      {
+        "name": "Hourly Pass",
+        "duration": "1 hour",
+        "price": 80,
+        "description": "Per hour rate"
+      },
+      {
+        "name": "Day Pass",
+        "duration": "14 hours", 
+        "price": 380,
+        "description": "8:00 AM - 10:00 PM"
+      },
+      {
+        "name": "Monthly Pass",
+        "duration": "30 days",
+        "price": 6500,
+        "description": "Unlimited access for 30 days"
+      }
+    ]
   },
   {
     "id": 3,
     "name": "Daily Grind Coworking",
     "location": "San Pedro City, Laguna",
-    "price": 250,
+    "base_price": 250,
     "main_image": "/assets/daily grind/daily1.jpg",
     "images": ["/assets/daily grind/daily1_1.jpg", "/assets/daily grind/daily1_2.jpg"],
     "description": "A flexible coworking hub for freelancers and students, offering short-term and day passes.",
@@ -51,13 +83,26 @@
       "Power Outlets"
     ],
     "hours": "9:00 AM – 9:00 PM",
-    "time_slots": ["3-Hour Pass", "Whole Day Pass"]
+    "time_slots": [
+      {
+        "name": "3-Hour Pass",
+        "duration": "3 hours",
+        "price": 120,
+        "description": "Any 3-hour block"
+      },
+      {
+        "name": "Whole Day Pass",
+        "duration": "12 hours",
+        "price": 250,
+        "description": "9:00 AM - 9:00 PM"
+      }
+    ]
   },
   {
     "id": 4,
     "name": "CoSY Coworking Space",
     "location": "Quezon City",
-    "price": 695,
+    "base_price": 695,
     "main_image": "/assets/cosy/cosy1.jpg",
     "images": ["/assets/cosy/cosy1_1.jpg", "/assets/cosy/cosy1_2.jpg"],
     "description": "A stylish coworking space perfect for professionals, students, and creatives.",
@@ -69,13 +114,26 @@
       "Ergonomic Chairs"
     ],
     "hours": "8:00 AM – 11:00 PM",
-    "time_slots": ["Hourly Pass", "Day Pass"]
+    "time_slots": [
+      {
+        "name": "Hourly Pass",
+        "duration": "1 hour",
+        "price": 95,
+        "description": "Per hour rate"
+      },
+      {
+        "name": "Day Pass",
+        "duration": "15 hours",
+        "price": 695,
+        "description": "8:00 AM - 11:00 PM"
+      }
+    ]
   },
   {
     "id": 5,
     "name": "Zone Offices",
     "location": "Manila",
-    "price": 450,
+    "base_price": 450,
     "main_image": "/assets/zone/zone1.jpg",
     "images": ["/assets/zone/zone1_1.jpg", "/assets/zone/zone1_2.jpg"],
     "description": "Flexible coworking desks and private rooms ideal for studying or working.",
@@ -87,16 +145,35 @@
       "Air Conditioning"
     ],
     "hours": "8:00 AM – 10:00 PM",
-    "time_slots": ["Half-Day Pass", "Full-Day Pass", "Private Office Pass"]
+    "time_slots": [
+      {
+        "name": "Half-Day Pass",
+        "duration": "7 hours",
+        "price": 280,
+        "description": "8:00 AM - 3:00 PM or 3:00 PM - 10:00 PM"
+      },
+      {
+        "name": "Full-Day Pass",
+        "duration": "14 hours",
+        "price": 450,
+        "description": "8:00 AM - 10:00 PM"
+      },
+      {
+        "name": "Private Office Pass",
+        "duration": "8 hours",
+        "price": 850,
+        "description": "Private room for 8 hours"
+      }
+    ]
   },
   {
     "id": 6,
     "name": "Qwork",
     "location": "Cainta, Rizal",
-    "price": 350,
+    "base_price": 350,
     "main_image": "/assets/qwork/qwork1.jpg",
     "images": ["/assets/qwork/qwork1_1.jpg", "/assets/qwork/qwork1_2.jpg"],
-    "description": "A modern coworking space with collaborative areas and individual desks.",
+    "description": "A modern coworking and study space located in Cainta, Rizal, with collaborative areas and individual desks.",
     "amenities": [
       "High-Speed WiFi",
       "Reserved Desks",
@@ -105,13 +182,32 @@
       "Pantry"
     ],
     "hours": "8:00 AM – 11:00 PM",
-    "time_slots": ["Half-Day Pass", "Full-Day Pass", "Weekly Pass", "Monthly Pass"]
+    "time_slots": [
+      {
+        "name": "Half-Day Pass",
+        "duration": "6 hours",
+        "price": 200,
+        "description": "Morning or afternoon session"
+      },
+      {
+        "name": "Full-Day Pass",
+        "duration": "12 hours",
+        "price": 350,
+        "description": "8:00 AM - 8:00 PM"
+      },
+      {
+        "name": "Monthly Pass",
+        "duration": "30 days",
+        "price": 6000,
+        "description": "Unlimited access for 30 days"
+      }
+    ]
   },
   {
     "id": 7,
     "name": "Clock In – Makati Stock Exchange",
     "location": "Makati City",
-    "price": 550,
+    "base_price": 550,
     "main_image": "/assets/clock/clock1.jpg",
     "images": ["/assets/clock/clock1_1.jpg", "/assets/clock/clock1_2.jpg"],
     "description": "A professional coworking space in the Makati Stock Exchange with flexible hourly, daily, and monthly options.",
@@ -123,13 +219,32 @@
       "Unlimited Coffee & Tea"
     ],
     "hours": "8:30 AM – 5:30 PM (Monday to Friday)",
-    "time_slots": ["Hourly Pass", "Day Pass", "Monthly Pass"]
+    "time_slots": [
+      {
+        "name": "Hourly Pass",
+        "duration": "1 hour",
+        "price": 89,
+        "description": "Per hour rate"
+      },
+      {
+        "name": "Day Pass",
+        "duration": "9 hours",
+        "price": 550,
+        "description": "8:30 AM - 5:30 PM"
+      },
+      {
+        "name": "Monthly Pass",
+        "duration": "30 days",
+        "price": 6000,
+        "description": "Unlimited access for 30 days"
+      }
+    ]
   },
   {
     "id": 8,
     "name": "Common Ground Rockwell",
     "location": "Makati City",
-    "price": 800,
+    "base_price": 800,
     "main_image": "/assets/common/common1.jpg",
     "images": ["/assets/common/common1_1.jpg", "/assets/common/common1_2.jpg"],
     "description": "Premium coworking space in Rockwell, ideal for networking and productivity.",
@@ -141,13 +256,26 @@
       "24/7 Access"
     ],
     "hours": "Open 24/7",
-    "time_slots": ["Day Pass", "Monthly Pass"]
+    "time_slots": [
+      {
+        "name": "Day Pass",
+        "duration": "12 hours",
+        "price": 800,
+        "description": "8:00 AM - 8:00 PM"
+      },
+      {
+        "name": "Monthly Pass",
+        "duration": "30 days",
+        "price": 8000,
+        "description": "Unlimited access for 30 days"
+      }
+    ]
   },
   {
     "id": 9,
     "name": "Acceler8 Coworking",
     "location": "Makati City",
-    "price": 560,
+    "base_price": 560,
     "main_image": "/assets/acceler8/acceler81.jpg",
     "images": ["/assets/acceler8/acceler81_1.jpg", "/assets/acceler8/acceler81_2.jpg"],
     "description": "Coworking community with access to multiple branches in Makati.",
@@ -159,13 +287,26 @@
       "Meeting Rooms"
     ],
     "hours": "8:00 AM – 10:00 PM",
-    "time_slots": ["Day Pass", "Monthly Pass"]
+    "time_slots": [
+      {
+        "name": "Day Pass",
+        "duration": "14 hours",
+        "price": 560,
+        "description": "8:00 AM - 10:00 PM"
+      },
+      {
+        "name": "Monthly Pass",
+        "duration": "30 days",
+        "price": 6000,
+        "description": "Unlimited access for 30 days"
+      }
+    ]
   },
   {
     "id": 10,
     "name": "Filipinas Heritage Library",
     "location": "Makati City",
-    "price": 150,
+    "base_price": 150,
     "main_image": "/assets/filipinas/filipinas1.jpg",
     "images": ["/assets/filipinas/filipinas1_1.jpg", "/assets/filipinas/filipinas1_2.jpg"],
     "description": "A quiet library perfect for research and study in the Ayala Museum complex.",
@@ -177,13 +318,26 @@
       "Photocopy Services"
     ],
     "hours": "9:00 AM – 6:00 PM",
-    "time_slots": ["Student Day Pass", "Regular Day Pass"]
+    "time_slots": [
+      {
+        "name": "Student Day Pass",
+        "duration": "9 hours",
+        "price": 150,
+        "description": "9:00 AM - 6:00 PM"
+      },
+      {
+        "name": "Regular Day Pass",
+        "duration": "9 hours",
+        "price": 200,
+        "description": "9:00 AM - 6:00 PM"
+      }
+    ]
   },
   {
     "id": 11,
     "name": "Mind Zone España",
     "location": "España Blvd., Sampaloc, Manila",
-    "price": 350,
+    "base_price": 350,
     "main_image": "/assets/mind/mind1.jpg",
     "images": ["/assets/mind/mind1_1.jpg", "/assets/mind/mind1_2.jpg"],
     "description": "A student-friendly study and co-working lounge in Manila offering flexible hourly and daily rates, perfect for productivity and collaboration.",
@@ -196,18 +350,43 @@
     ],
     "hours": "8:00 AM – 12:00 AM",
     "time_slots": [
-      "₱60 – 1 Hour",
-      "₱150 – 4 Hours",
-      "₱200 – 6 Hours",
-      "₱250 – 8 Hours",
-      "₱350 – Full Day Pass"
+      {
+        "name": "1 Hour",
+        "duration": "1 hour",
+        "price": 60,
+        "description": "Per hour rate"
+      },
+      {
+        "name": "4 Hours",
+        "duration": "4 hours",
+        "price": 150,
+        "description": "Any 4-hour block"
+      },
+      {
+        "name": "6 Hours",
+        "duration": "6 hours",
+        "price": 200,
+        "description": "Any 6-hour block"
+      },
+      {
+        "name": "8 Hours",
+        "duration": "8 hours",
+        "price": 250,
+        "description": "Any 8-hour block"
+      },
+      {
+        "name": "Full Day Pass",
+        "duration": "16 hours",
+        "price": 350,
+        "description": "8:00 AM - 12:00 AM"
+      }
     ]
   },
   {
     "id": 12,
     "name": "Just In Time Study Hub",
     "location": "Quiapo, Manila",
-    "price": 80,
+    "base_price": 150,
     "main_image": "/assets/just/just1.jpg",
     "images": ["/assets/just/just1_1.jpg", "/assets/just/just1_2.jpg"],
     "description": "Budget-friendly study hub with multiple time-based packages for students.",
@@ -219,13 +398,44 @@
       "Affordable Rates"
     ],
     "hours": "8:00 AM – 12:00 MN",
-    "time_slots": ["1 Hour Pass", "4 Hour Pass", "8 Hour Pass", "Whole Day Pass", "Multi-Day Pass"]
+    "time_slots": [
+      {
+        "name": "1 Hour Pass",
+        "duration": "1 hour",
+        "price": 35,
+        "description": "Per hour rate"
+      },
+      {
+        "name": "4 Hour Pass",
+        "duration": "4 hours", 
+        "price": 80,
+        "description": "Any 4-hour block"
+      },
+      {
+        "name": "8 Hour Pass",
+        "duration": "8 hours",
+        "price": 120,
+        "description": "Any 8-hour block"
+      },
+      {
+        "name": "Whole Day Pass",
+        "duration": "16 hours",
+        "price": 150,
+        "description": "8:00 AM - 12:00 MN"
+      },
+      {
+        "name": "Multi-Day Pass",
+        "duration": "3 days",
+        "price": 400,
+        "description": "3-day unlimited access"
+      }
+    ]
   },
   {
     "id": 13,
-    "name": "Loft Coworking Space",
+    "name": "Loft Coworking Space", 
     "location": "Ortigas, Quezon City (also in Makati and BGC)",
-    "price": 550,
+    "base_price": 550,
     "main_image": "/assets/loft/loft1.jpg",
     "images": ["/assets/loft/loft1_1.jpg", "/assets/loft/loft1_2.jpg"],
     "description": "A stylish and flexible coworking space with branches in Ortigas, Makati, and BGC. Perfect for freelancers, students, and professionals looking for productivity and networking opportunities.",
@@ -238,17 +448,37 @@
     ],
     "hours": "8:00 AM – 6:00 PM",
     "time_slots": [
-      "₱130 – Per Hour",
-      "₱400 – Half Day",
-      "₱550 – Full Day",
-      "₱5,500 – Monthly Pass"
+      {
+        "name": "Per Hour",
+        "duration": "1 hour",
+        "price": 130,
+        "description": "Hourly rate"
+      },
+      {
+        "name": "Half Day",
+        "duration": "5 hours",
+        "price": 400,
+        "description": "Any 5-hour block"
+      },
+      {
+        "name": "Full Day",
+        "duration": "10 hours",
+        "price": 550,
+        "description": "8:00 AM - 6:00 PM"
+      },
+      {
+        "name": "Monthly Pass",
+        "duration": "30 days",
+        "price": 5500,
+        "description": "Unlimited access for 30 days"
+      }
     ]
   },
   {
     "id": 14,
     "name": "Study Corner Coworking Space",
     "location": "Sta. Mesa, Manila",
-    "price": 220,
+    "base_price": 220,
     "main_image": "/assets/corner/corner1.jpg",
     "images": ["/assets/corner/corner1_1.jpg", "/assets/corner/corner1_2.jpg"],
     "description": "A budget-friendly coworking and study space in Sta. Mesa, Manila with flexible hourly and daily packages, free coffee and tea, and student-friendly amenities.",
@@ -261,17 +491,37 @@
     ],
     "hours": "8:00 AM – 11:00 PM",
     "time_slots": [
-      "₱70 – 1 to 2 Hours",
-      "₱120 – 3 to 5 Hours",
-      "₱180 – 6 to 11 Hours",
-      "₱220 – 12 to 15 Hours"
+      {
+        "name": "1 to 2 Hours",
+        "duration": "2 hours",
+        "price": 70,
+        "description": "Up to 2 hours"
+      },
+      {
+        "name": "3 to 5 Hours",
+        "duration": "5 hours",
+        "price": 120,
+        "description": "3-5 hour block"
+      },
+      {
+        "name": "6 to 11 Hours",
+        "duration": "11 hours",
+        "price": 180,
+        "description": "6-11 hour block"
+      },
+      {
+        "name": "12 to 15 Hours",
+        "duration": "15 hours",
+        "price": 220,
+        "description": "Extended day pass"
+      }
     ]
   },
   {
     "id": 15,
     "name": "Enspace Cebu",
     "location": "Cebu IT Park, Apas, Cebu City",
-    "price": 400,
+    "base_price": 400,
     "main_image": "/assets/enspace/enspace1.jpg",
     "images": ["/assets/enspace/enspace1_1.jpg", "/assets/enspace/enspace1_2.jpg"],
     "description": "A modern coworking hub in Cebu IT Park offering flexible passes and memberships, 24/7 access for members, and a professional environment ideal for students, freelancers, and businesses.",
@@ -284,10 +534,30 @@
     ],
     "hours": "Open 24/7 for members; Day Pass 9:00 AM – 6:00 PM",
     "time_slots": [
-      "₱400 – Day Pass",
-      "₱500 – Overnight Pass (9:00 PM – 7:00 AM)",
-      "₱4,500 – Student Monthly",
-      "₱6,500 – Free Desk Monthly"
-  ]
-}
+      {
+        "name": "Day Pass",
+        "duration": "9 hours",
+        "price": 400,
+        "description": "9:00 AM - 6:00 PM"
+      },
+      {
+        "name": "Overnight Pass",
+        "duration": "10 hours",
+        "price": 500,
+        "description": "9:00 PM - 7:00 AM"
+      },
+      {
+        "name": "Student Monthly",
+        "duration": "30 days",
+        "price": 4500,
+        "description": "Monthly student membership"
+      },
+      {
+        "name": "Free Desk Monthly",
+        "duration": "30 days",
+        "price": 6500,
+        "description": "Monthly hot desk membership"
+      }
+    ]
+  }
 ]
