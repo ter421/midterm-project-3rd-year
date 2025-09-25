@@ -107,7 +107,7 @@ export default function SpaceCard({ space }) {
                 opacity: 0.9
               }}
             >
-              {space.time_slots.length} available time options
+              {space.time_slots.length} available schedule options
             </span>
           )}
         </div>

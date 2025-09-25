@@ -350,7 +350,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: var(--transition);
   position: relative;
   overflow: hidden;
-  animation: slideInUp 0.6s ease-out;
+  animation: slideInUp 0.7s ease-out;
 }
 
 .card::before {
@@ -369,6 +369,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
   background: var(--surface-hover);
+  transition: all 0.5s ease;
 }
 
 .card:hover::before {
