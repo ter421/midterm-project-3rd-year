@@ -101,41 +101,22 @@ export default function SearchBar({ value, onChange }) {
   }
 
   return (
-    <div className="search-container" style={{ position: 'relative' }}>
+    <div className="search-container">
       {/* Search input */}
-      <div style={{ position: 'relative' }}>
+      <div className="searchbar-input-container">
         <input
           ref={inputRef}
-          className="form-control mb-3"
+          className={`form-control mb-3 searchbar-input ${isFocused ? 'focused' : ''}`}
           placeholder="Search by name or location..."
           value={value}
           onChange={handleInputChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          style={{
-            paddingLeft: '3.5rem',
-            paddingRight: value ? '3rem' : '1.5rem',
-            fontSize: '1.05rem',
-            transition: 'all var(--transition-medium)',
-            boxShadow: isFocused 
-              ? '0 0 0 4px hsla(var(--bg-accent-1) / 0.15), var(--glass-shadow)' 
-              : 'var(--card-shadow)'
-          }}
         />
         
         {/* Search icon */}
-        <div style={{
-          position: 'absolute',
-          left: '1.2rem',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          fontSize: '1.2rem',
-          color: isFocused ? 'var(--accent-text)' : 'var(--text-muted)',
-          transition: 'color var(--transition-fast)',
-          pointerEvents: 'none',
-          zIndex: 2
-        }}>
+        <div className={`searchbar-search-icon ${isFocused ? 'focused' : ''}`}>
           🔍
         </div>
 
@@ -144,33 +125,7 @@ export default function SearchBar({ value, onChange }) {
           <button
             type="button"
             onClick={clearSearch}
-            style={{
-              position: 'absolute',
-              right: '1rem',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              background: 'var(--text-muted)',
-              border: 'none',
-              borderRadius: '50%',
-              width: '24px',
-              height: '24px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              transition: 'all var(--transition-fast)',
-              color: 'white',
-              fontSize: '0.8rem',
-              zIndex: 2
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.background = 'var(--accent-text)'
-              e.target.style.transform = 'translateY(-50%) scale(1.1)'
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.background = 'var(--text-muted)'
-              e.target.style.transform = 'translateY(-50%) scale(1)'
-            }}
+            className="searchbar-clear-btn"
             aria-label="Clear search"
           >
             ×
@@ -180,28 +135,10 @@ export default function SearchBar({ value, onChange }) {
 
       {/* Suggestions dropdown */}
       {showSuggestions && suggestions.length > 0 && (
-        <div style={{
-          position: 'absolute',
-          top: 'calc(100% - 1rem)',
-          left: 0,
-          right: 0,
-          background: 'var(--surface)',
-          border: '1px solid var(--border-color)',
-          borderRadius: 'var(--card-radius)',
-          boxShadow: 'var(--glass-shadow)',
-          zIndex: 1000,
-          maxHeight: '300px',
-          overflowY: 'auto',
-          animation: 'fadeInDown 0.2s ease-out'
-        }}>
-          <div style={{ padding: '0.5rem 0' }}>
+        <div className="searchbar-suggestions">
+          <div className="py-2">
             {value.length === 0 && (
-              <div style={{ 
-                padding: '0.5rem 1.5rem', 
-                fontSize: '0.85rem',
-                color: 'var(--text-muted)',
-                fontWeight: '600'
-              }}>
+              <div className="searchbar-suggestions-header">
                 Popular searches
               </div>
             )}
@@ -212,43 +149,14 @@ export default function SearchBar({ value, onChange }) {
                 ref={el => suggestionRefs.current[index] = el}
                 type="button"
                 onClick={() => selectSuggestion(suggestion)}
-                style={{
-                  width: '100%',
-                  padding: '0.75rem 1.5rem',
-                  border: 'none',
-                  background: activeSuggestion === index 
-                    ? 'hsla(var(--bg-accent-1) / 0.08)' 
-                    : 'transparent',
-                  color: 'var(--text-primary)',
-                  textAlign: 'left',
-                  cursor: 'pointer',
-                  transition: 'all var(--transition-fast)',
-                  fontSize: '0.95rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.75rem'
-                }}
-                onMouseEnter={(e) => {
-                  if (activeSuggestion !== index) {
-                    e.target.style.background = 'hsla(var(--bg-accent-1) / 0.05)'
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (activeSuggestion !== index) {
-                    e.target.style.background = 'transparent'
-                  }
-                }}
+                className={`searchbar-suggestion-btn ${activeSuggestion === index ? 'active' : ''}`}
               >
-                <span style={{ fontSize: '0.9rem', opacity: 0.7 }}>
+                <span className="searchbar-suggestion-icon">
                   {value.length > 0 ? '🔍' : '⭐'}
                 </span>
                 <span>{suggestion}</span>
                 {activeSuggestion === index && (
-                  <span style={{ 
-                    marginLeft: 'auto', 
-                    fontSize: '0.8rem',
-                    opacity: 0.7
-                  }}>
+                  <span className="searchbar-suggestion-enter">
                     ↵
                   </span>
                 )}

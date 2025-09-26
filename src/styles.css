@@ -33,12 +33,22 @@
   --spacing: 1rem;
   --transition: 0.2s ease;
   --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-medium: 0.3s ease;
+  --transition-fast: 0.15s ease;
   
   /* Interactive background */
   --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+
+  /* New variables for extracted styles */
+  --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --card-radius: 12px;
+  --bg-accent-1: 59, 130, 246;
+  --bg-accent-2: 139, 92, 246;
+  --accent-text: var(--primary);
 }
 
 /* ---------- Dynamic Background Animations ---------- */
@@ -647,140 +657,515 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--primary);
 }
 
-/* ---------- Responsive Design ---------- */
-@media (max-width: 768px) {
-  .card-img-top {
-    height: 180px;
-  }
-  
-  .floating-element-1,
-  .floating-element-2,
-  .floating-element-3 {
-    display: none;
-  }
-  
-  .search-container input {
-    font-size: 1rem;
-    padding: 0.875rem 3rem;
-  }
+/* ========== EXTRACTED COMPONENT STYLES ========== */
+
+/* ---------- BookingForm.jsx (lines 147-208) ---------- */
+.booking-form-price-display {
+  background-color: #f8f9fa; /* bg-light */
 }
 
-@media (max-width: 576px) {
-  body::after {
-    width: 150px;
-    height: 150px;
-  }
-  
-  .card-body {
-    padding: 1rem;
-  }
-  
-  .space-card-badge {
-    top: 0.5rem;
-    right: 0.5rem;
-  }
+.booking-form-price-display .badge-base {
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  border-radius: 25px;
+  border: 1px solid #e9ecef;
+  font-weight: 500;
 }
 
-/* ---------- Accessibility ---------- */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  body::before,
-  body::after,
-  .floating-element-1,
-  .floating-element-2,
-  .floating-element-3 {
-    animation: none !important;
-  }
+/* ---------- ConfirmModal.jsx (line 5) ---------- */
+.confirm-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
 }
 
-/* Focus states */
-a:focus,
-button:focus,
-input:focus,
-select:focus {
-  outline: 3px solid rgba(59, 130, 246, 0.3);
-  outline-offset: 2px;
+.confirm-modal-card {
+  min-width: 320px;
 }
 
-/* ========== DARK MODE STYLES ========== */
-
-/* Dark Mode Variables */
-body.dark-mode {
-  /* Core dynamic colors - Dark Mode */
-  --primary: #60a5fa;
-  --primary-dark: #3b82f6;
-  --secondary: #a78bfa;
-  --accent: #22d3ee;
-  --success: #34d399;
-  --warning: #fbbf24;
-  --danger: #f87171;
-  
-  /* Surface colors - Dark Mode */
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-accent: rgba(96, 165, 250, 0.1);
-  --surface: rgba(30, 41, 59, 0.95);
-  --surface-hover: rgba(30, 41, 59, 0.98);
-  
-  /* Text colors - Dark Mode */
-  --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --text-light: #64748b;
-  
-  /* Interactive states - Dark Mode */
-  --border-color: #334155;
-  --border-focus: var(--primary);
-  --shadow-color: rgba(0, 0, 0, 0.3);
-}
-
-/* Dark Mode Background */
-body.dark-mode {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  color: var(--text-primary);
-}
-
-/* Dark Mode Background Effects */
-body.dark-mode::before {
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(96, 165, 250, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(167, 139, 250, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(34, 211, 238, 0.12) 0%, transparent 50%);
-}
-
-/* Dark Mode Navigation */
-body.dark-mode .navbar {
-  background: rgba(30, 41, 59, 0.9) !important;
-  border-bottom: 1px solid var(--border-color);
-  backdrop-filter: blur(20px);
-}
-
-body.dark-mode .navbar-brand {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-body.dark-mode .nav-link {
+/* ---------- Header.jsx (lines 48-69) ---------- */
+.dark-mode-toggle-fixed {
+  position: fixed;
+  top: 0.7rem;
+  right: 1rem;
+  z-index: 1100; /* Above navbar */
+  background: var(--surface) !important;
+  border: 2px solid var(--border-color) !important;
+  border-radius: 50% !important;
+  width: 44px !important;
+  height: 44px !important;
+  padding: 0 !important;
+  transition: var(--transition) !important;
   color: var(--text-secondary) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 12px var(--shadow-color) !important;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
 }
 
-body.dark-mode .nav-link:hover {
+.dark-mode-toggle-fixed:hover,
+.dark-mode-toggle-fixed:focus {
+  background: var(--bg-accent) !important;
+  border-color: var(--primary) !important;
   color: var(--primary) !important;
-  background: rgba(96, 165, 250, 0.15);
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 8px 20px var(--shadow-color) !important;
 }
 
-body.dark-mode .nav-link.active {
-  color: var(--primary) !important;
-  background: rgba(96, 165, 250, 0.2);
+.dark-mode-toggle-fixed .dark-mode-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.dark-mode-toggle-fixed:hover .dark-mode-icon {
+  transform: rotate(15deg);
+}
+
+/* ---------- SearchBar.jsx (lines 86-137) ---------- */
+.searchbar-input-container {
+  position: relative;
+}
+
+.searchbar-input {
+  padding-left: 3.5rem;
+  font-size: 1.05rem;
+  transition: all var(--transition-medium);
+}
+
+.searchbar-input:focus {
+  box-shadow: 0 0 0 4px hsla(var(--bg-accent-1) / 0.15), var(--glass-shadow);
+}
+
+.searchbar-search-icon {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.searchbar-input:focus + .searchbar-search-icon {
+  color: var(--accent-text);
+}
+
+.searchbar-clear-btn {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--text-muted);
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: white;
+  font-size: 0.8rem;
+  z-index: 2;
+}
+
+.searchbar-clear-btn:hover {
+  background: var(--accent-text);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* SearchBar suggestions dropdown (lines 139-206) */
+.searchbar-suggestions {
+  position: absolute;
+  top: calc(100% - 1rem);
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  box-shadow: var(--glass-shadow);
+  z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
+  animation: fadeInDown 0.2s ease-out;
+}
+
+.searchbar-suggestions-header {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.searchbar-suggestion-btn {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.searchbar-suggestion-btn:hover {
+  background: hsla(var(--bg-accent-1) / 0.05);
+}
+
+.searchbar-suggestion-btn.active {
+  background: hsla(var(--bg-accent-1) / 0.08);
+}
+
+.searchbar-suggestion-icon {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.searchbar-suggestion-enter {
+  margin-left: auto;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* ---------- SpaceCard.jsx (lines 23-29) ---------- */
+.spacecard-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--card-radius) var(--card-radius) 0 0;
+}
+
+.spacecard-loading-placeholder,
+.spacecard-error-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spacecard-loading-placeholder {
+  background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+  color: #999;
+  font-size: 1.5rem;
+}
+
+.spacecard-error-placeholder {
+  background: linear-gradient(135deg, var(--surface-elevated), var(--surface));
+  color: var(--text-muted);
+  font-size: 2rem;
+  flex-direction: column;
+}
+
+.spacecard-error-placeholder small {
+  font-size: 0.8rem;
+  margin-top: 8px;
+}
+
+.spacecard-image {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.spacecard-image.loaded {
+  opacity: 1;
+}
+
+/* SpaceCard overlay badges (lines 46-69) */
+.spacecard-overlay-badges {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.spacecard-price-badge {
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.spacecard-slots-badge {
+  font-size: 0.7rem;
+  border-radius: 15px;
+  opacity: 0.9;
+}
+
+/* SpaceCard content (lines 74-136) */
+.spacecard-title {
+  line-height: 1.3;
+}
+
+.spacecard-location {
+  font-size: 0.9rem;
+}
+
+.spacecard-description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.spacecard-amenities {
+  margin-bottom: 1rem;
+}
+
+.spacecard-amenity {
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.spacecard-amenity-more {
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.spacecard-hours {
+  font-size: 0.85rem;
+}
+
+.spacecard-hours-icon {
+  margin-right: 0.5rem;
+}
+
+.spacecard-cta {
+  font-weight: 600;
+}
+
+.spacecard-cta-arrow {
+  font-size: 0.9rem;
+}
+
+/* SpaceCard hover overlay (lines 159-171) */
+.card-hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, hsla(var(--bg-accent-1) / 0.05), hsla(var(--bg-accent-2) / 0.03));
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+  pointer-events: none;
+  border-radius: var(--card-radius);
+}
+
+.card:hover .card-hover-overlay {
+  opacity: 1;
+}
+
+/* ---------- HomePage.jsx (line 126) ---------- */
+.homepage-header-title {
+  max-width: 600px;
+}
+
+/* HomePage loading skeleton (lines 30-45) */
+.homepage-skeleton-card {
+  height: 100%;
+}
+
+.homepage-skeleton-img {
+  height: 180px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.homepage-skeleton-text {
+  height: 16px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.homepage-skeleton-text.short {
+  width: 60%;
+}
+
+/* ---------- LoginPage.jsx (line 29) ---------- */
+.login-container {
+  max-width: 400px;
+}
+
+/* ---------- SignupPage.jsx (line 24) ---------- */
+.signup-container {
+  max-width: 400px;
+}
+
+/* ---------- SpaceDetail.jsx (lines 84-104) ---------- */
+.spacedetail-image-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.spacedetail-main-image {
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(12,18,36,0.1);
+}
+
+.spacedetail-image-counter {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* SpaceDetail thumbnail gallery (lines 106-128) */
+.spacedetail-thumbnail-btn {
+  min-width: 80px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.spacedetail-thumbnail-btn.active {
+  border: 3px solid var(--accent-text);
+}
+
+.spacedetail-thumbnail-btn:not(.active) {
+  border: 2px solid #e9ecef;
+}
+
+.spacedetail-thumbnail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* SpaceDetail space header (lines 132-161) */
+.spacedetail-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.spacedetail-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.spacedetail-location-icon,
+.spacedetail-hours-icon {
+  font-size: 1.1rem;
+}
+
+.spacedetail-location-text {
+  font-size: 1.25rem;
+}
+
+.spacedetail-price-badge {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+}
+
+.spacedetail-price-badge.low {
+  background: #22c55e;
+}
+
+.spacedetail-price-badge.medium {
+  background: #f59e0b;
+}
+
+.spacedetail-price-badge.high {
+  background: #ef4444;
+}
+
+.spacedetail-price-duration {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  margin-left: 0.25rem;
+}
+
+/* SpaceDetail description (lines 165-171) */
+.spacedetail-description {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+/* SpaceDetail amenities (lines 175-190) */
+.spacedetail-amenity {
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  border-radius: 25px;
+  border: 1px solid #e9ecef;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* SpaceDetail time slots (lines 194-245) */
+.spacedetail-timeslot-card {
+  cursor: pointer;
+  transition: all 0.2s;
+  height: 100%;
+}
+
+.spacedetail-timeslot-card.selected {
+  border: 2px solid var(--primary);
+}
+
+.spacedetail-timeslot-card:not(.selected) {
+  border: 1px solid var(--border-color);
+}
+
+.spacedetail-timeslot-title {
+  font-weight: 600;
+}
+
+.spacedetail-timeslot-price {
+  font-weight: 600;
+  color: white;
+}
+
+.spacedetail-timeslot-price.low {
+  background: #22c55e;
+}
+
+.spacedetail-timeslot-price.medium {
+  background: #f59e0b;
+}
+
+.spacedetail-timeslot-price.high {
+  background: #ef4444;
+}
+
+.spacedetail-sticky-sidebar {
+  position: sticky;
+  top: 2rem;
 }
 
 /* ========== DARK MODE STYLES ========== */
@@ -802,6 +1187,7 @@ body.dark-mode {
   --bg-accent: rgba(96, 165, 250, 0.1);
   --surface: rgba(30, 41, 59, 0.95);
   --surface-hover: rgba(30, 41, 59, 0.98);
+  --surface-elevated: #1e293b;
   
   /* Text colors - Dark Mode */
   --text-primary: #f1f5f9;
@@ -813,6 +1199,7 @@ body.dark-mode {
   --border-color: #334155;
   --border-focus: var(--primary);
   --shadow-color: rgba(0, 0, 0, 0.3);
+  --accent-text: var(--primary);
 }
 
 /* Dark Mode Background */
@@ -858,47 +1245,6 @@ body.dark-mode .nav-link.active {
 }
 
 /* Dark Mode Toggle Button Styles */
-.dark-mode-toggle-fixed {
-  position: fixed;
-  top: 0.7rem;
-  right: 1rem;
-  z-index: 1100; /* Above navbar */
-  background: var(--surface) !important;
-  border: 2px solid var(--border-color) !important;
-  border-radius: 50% !important;
-  width: 44px !important;
-  height: 44px !important;
-  padding: 0 !important;
-  transition: var(--transition) !important;
-  color: var(--text-secondary) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-shadow: 0 4px 12px var(--shadow-color) !important;
-  backdrop-filter: blur(10px);
-  cursor: pointer;
-}
-
-.dark-mode-toggle-fixed:hover,
-.dark-mode-toggle-fixed:focus {
-  background: var(--bg-accent) !important;
-  border-color: var(--primary) !important;
-  color: var(--primary) !important;
-  transform: translateY(-2px) scale(1.05) !important;
-  box-shadow: 0 8px 20px var(--shadow-color) !important;
-}
-
-.dark-mode-toggle-fixed .dark-mode-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition);
-}
-
-.dark-mode-toggle-fixed:hover .dark-mode-icon {
-  transform: rotate(15deg);
-}
-
 body.dark-mode .dark-mode-toggle-fixed {
   background: var(--surface) !important;
   border-color: var(--border-color) !important;
@@ -913,56 +1259,6 @@ body.dark-mode .dark-mode-toggle-fixed:hover {
 
 body.dark-mode .dark-mode-toggle-fixed:hover .dark-mode-icon {
   transform: rotate(-15deg);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .dark-mode-toggle-fixed {
-    top: 0.75rem;
-    right: 0.75rem;
-    width: 40px !important;
-    height: 40px !important;
-  }
-}
-
-/* Remove old toggle styles since we're not using them anymore */
-.dark-mode-toggle {
-  background: none !important;
-  border: 2px solid var(--border-color) !important;
-  border-radius: 50px !important;
-  padding: 0.5rem 0.75rem !important;
-  transition: var(--transition) !important;
-  color: var(--text-secondary) !important;
-  text-decoration: none !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.5rem !important;
-  font-weight: 500 !important;
-  box-shadow: 0 2px 8px var(--shadow-color) !important;
-}
-
-.dark-mode-toggle:hover,
-.dark-mode-toggle:focus {
-  background: var(--bg-accent) !important;
-  border-color: var(--primary) !important;
-  color: var(--primary) !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px var(--shadow-color) !important;
-}
-
-.dark-mode-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition);
-}
-
-.dark-mode-toggle:hover .dark-mode-icon {
-  transform: rotate(20deg);
-}
-
-body.dark-mode .dark-mode-toggle:hover .dark-mode-icon {
-  transform: rotate(-20deg);
 }
 
 /* Dark Mode Cards */
@@ -1002,19 +1298,39 @@ body.dark-mode .form-label {
 }
 
 /* Dark Mode Search */
-body.dark-mode .search-container input {
+body.dark-mode .search-container input,
+body.dark-mode .searchbar-input {
   background: rgba(30, 41, 59, 0.9);
   color: var(--text-primary);
   border-color: var(--border-color);
 }
 
-body.dark-mode .search-container input:focus {
+body.dark-mode .search-container input:focus,
+body.dark-mode .searchbar-input:focus {
   background: rgba(30, 41, 59, 0.95);
   border-color: var(--primary);
 }
 
-body.dark-mode .search-container input::placeholder {
+body.dark-mode .search-container input::placeholder,
+body.dark-mode .searchbar-input::placeholder {
   color: var(--text-muted);
+}
+
+/* Dark Mode SearchBar specific */
+body.dark-mode .searchbar-search-icon {
+  color: var(--text-muted);
+}
+
+body.dark-mode .searchbar-input:focus ~ .searchbar-search-icon {
+  color: var(--accent-text);
+}
+
+body.dark-mode .searchbar-clear-btn {
+  background: var(--text-muted);
+}
+
+body.dark-mode .searchbar-clear-btn:hover {
+  background: var(--accent-text);
 }
 
 /* Dark Mode Dropdown */
@@ -1066,28 +1382,14 @@ body.dark-mode .modal-backdrop {
   background: rgba(0, 0, 0, 0.7);
 }
 
-/* Dark Mode ConfirmModal Fix - Specific targeting */
-body.dark-mode .modal-backdrop .card h5 {
-  color: var(--text-primary) !important;
-}
-
-body.dark-mode .modal-backdrop .card p {
-  color: var(--text-secondary) !important;
-}
-
-/* Ensure the card itself has proper background and text color */
 body.dark-mode .modal-backdrop .card {
   background: var(--bg-primary) !important;
   color: var(--text-primary) !important;
   border-color: var(--border-color) !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 }
 
-/* Make sure all text inside modal cards is visible */
-body.dark-mode .modal-backdrop .card * {
-  color: inherit;
-}
-
-/* Override for specific elements */
+/* Modal text content fixes */
 body.dark-mode .modal-backdrop .card h1,
 body.dark-mode .modal-backdrop .card h2,
 body.dark-mode .modal-backdrop .card h3,
@@ -1099,12 +1401,6 @@ body.dark-mode .modal-backdrop .card h6 {
 
 body.dark-mode .modal-backdrop .card p {
   color: var(--text-secondary) !important;
-}
-
-body.dark-mode .modal-backdrop .card {
-  background: var(--bg-primary);
-  border-color: var(--border-color);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 }
 
 /* Dark Mode Lists */
@@ -1120,18 +1416,22 @@ body.dark-mode .list-group-item:hover {
 }
 
 /* Dark Mode Search Suggestions */
-body.dark-mode .search-suggestions {
+body.dark-mode .search-suggestions,
+body.dark-mode .searchbar-suggestions {
   background: var(--surface);
   border-color: var(--border-color);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
-body.dark-mode .search-suggestion-item {
+body.dark-mode .search-suggestion-item,
+body.dark-mode .searchbar-suggestion-btn {
   color: var(--text-secondary);
 }
 
 body.dark-mode .search-suggestion-item:hover,
-body.dark-mode .search-suggestion-item.active {
+body.dark-mode .search-suggestion-item.active,
+body.dark-mode .searchbar-suggestion-btn:hover,
+body.dark-mode .searchbar-suggestion-btn.active {
   background: rgba(96, 165, 250, 0.15);
   color: var(--primary);
 }
@@ -1139,19 +1439,24 @@ body.dark-mode .search-suggestion-item.active {
 /* Dark Mode Loading States */
 body.dark-mode .loading-skeleton,
 body.dark-mode .skeleton-img,
-body.dark-mode .skeleton-text {
+body.dark-mode .skeleton-text,
+body.dark-mode .homepage-skeleton-img,
+body.dark-mode .homepage-skeleton-text {
   background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
   background-size: 200% 100%;
 }
 
 /* Dark Mode Amenity Chips */
-body.dark-mode .amenity-chip {
+body.dark-mode .amenity-chip,
+body.dark-mode .spacecard-amenity,
+body.dark-mode .spacedetail-amenity {
   background: rgba(30, 41, 59, 0.9);
   color: var(--text-secondary);
   border-color: var(--border-color);
 }
 
-body.dark-mode .amenity-chip:hover {
+body.dark-mode .amenity-chip:hover,
+body.dark-mode .spacecard-amenity:hover {
   background: var(--primary);
   color: var(--bg-primary);
 }
@@ -1162,6 +1467,97 @@ body.dark-mode button:focus,
 body.dark-mode input:focus,
 body.dark-mode select:focus {
   outline-color: rgba(96, 165, 250, 0.5);
+}
+
+/* Dark Mode SpaceCard specific */
+body.dark-mode .spacecard-error-placeholder {
+  background: linear-gradient(135deg, var(--surface-elevated), var(--surface));
+  color: var(--text-muted);
+}
+
+/* ---------- Responsive Design ---------- */
+@media (max-width: 768px) {
+  .card-img-top {
+    height: 180px;
+  }
+  
+  .floating-element-1,
+  .floating-element-2,
+  .floating-element-3 {
+    display: none;
+  }
+  
+  .search-container input,
+  .searchbar-input {
+    font-size: 1rem;
+    padding: 0.875rem 3rem;
+  }
+
+  .dark-mode-toggle-fixed {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .spacedetail-title {
+    font-size: 2rem;
+  }
+
+  .spacedetail-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  body::after {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .space-card-badge,
+  .spacecard-overlay-badges {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .spacedetail-title {
+    font-size: 1.75rem;
+  }
+}
+
+/* ---------- Accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  body::before,
+  body::after,
+  .floating-element-1,
+  .floating-element-2,
+  .floating-element-3 {
+    animation: none !important;
+  }
+}
+
+/* Focus states */
+a:focus,
+button:focus,
+input:focus,
+select:focus {
+  outline: 3px solid rgba(59, 130, 246, 0.3);
+  outline-offset: 2px;
 }
 
 /* Smooth transitions for theme switching */
@@ -1180,7 +1576,8 @@ body.dark-mode select:focus {
   .floating-element-3,
   .navbar,
   .btn,
-  .modal-backdrop {
+  .modal-backdrop,
+  .dark-mode-toggle-fixed {
     display: none !important;
   }
   

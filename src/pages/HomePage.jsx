@@ -62,11 +62,11 @@ export default function HomePage() {
     <div className="row g-3">
       {[...Array(6)].map((_, i) => (
         <div key={i} className="col-12 col-md-6 col-lg-4">
-          <div className="card h-100 skeleton-card">
-            <div className="card-img-top skeleton-img" />
+          <div className="card h-100 homepage-skeleton-card">
+            <div className="card-img-top homepage-skeleton-img" />
             <div className="card-body">
-              <div className="skeleton-text" />
-              <div className="skeleton-text short" />
+              <div className="homepage-skeleton-text" />
+              <div className="homepage-skeleton-text short" />
             </div>
           </div>
         </div>
@@ -81,7 +81,7 @@ export default function HomePage() {
         <h1 className="display-3 mb-4">
           Discover Amazing Study Spaces
         </h1>
-        <p className="lead text-muted mx-auto" style={{maxWidth: '600px'}}>
+        <p className="lead text-muted mx-auto homepage-header-title">
           Find the perfect environment to boost your productivity and focus
         </p>
       </div>

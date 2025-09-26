@@ -212,7 +212,7 @@ export default function BookingForm({ space, selectedTimeSlot, currentPrice }) {
       </div>
 
       {/* Price display */}
-      <div className="mb-3 p-3 bg-light rounded">
+      <div className="mb-3 p-3 booking-form-price-display rounded">
         <div className="d-flex justify-content-between align-items-center mb-2">
           <span className="fw-semibold">Selected Time Slot:</span>
           <span className="text-muted">{timeSlot || 'None selected'}</span>

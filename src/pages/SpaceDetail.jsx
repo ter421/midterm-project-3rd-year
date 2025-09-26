@@ -39,9 +39,9 @@ export default function SpaceDetail() {
       <div className="container py-4">
         <div className="row">
           <div className="col-md-8">
-            <div className="skeleton-img mb-4" style={{ height: '400px' }}></div>
-            <div className="skeleton-text" style={{ width: '60%', height: '32px' }}></div>
-            <div className="skeleton-text" style={{ width: '40%' }}></div>
+            <div className="skeleton-img mb-4 spacedetail-main-image"></div>
+            <div className="skeleton-text spacedetail-title-skeleton"></div>
+            <div className="skeleton-text short"></div>
           </div>
           <div className="col-md-4">
             <div className="card p-3">
@@ -90,6 +90,13 @@ export default function SpaceDetail() {
     e.target.src = getPlaceholderImage(space.id)
   }
 
+  // Get price badge class
+  const getPriceBadgeClass = (price) => {
+    if (price <= 200) return 'spacedetail-price-badge low'
+    if (price <= 350) return 'spacedetail-price-badge medium'
+    return 'spacedetail-price-badge high'
+  }
+
   return (
     <div className="container py-4">
       <div className="row">
@@ -98,35 +105,17 @@ export default function SpaceDetail() {
           {/* Image gallery */}
           <div className="mb-4">
             {/* Main image */}
-            <div className="position-relative mb-3">
+            <div className="spacedetail-image-container">
               <img 
                 src={images[selectedImage] || getPlaceholderImage(space.id)} 
                 alt={space.name}
-                className="img-fluid w-100"
-                style={{ 
-                  height: '400px', 
-                  objectFit: 'cover', 
-                  borderRadius: '12px',
-                  boxShadow: '0 12px 30px rgba(12,18,36,0.1)'
-                }}
+                className="img-fluid w-100 spacedetail-main-image"
                 onError={handleImageError}
               />
               
               {/* Image counter */}
               {images.length > 1 && (
-                <div 
-                  style={{
-                    position: 'absolute',
-                    top: '16px',
-                    right: '16px',
-                    background: 'rgba(0,0,0,0.7)',
-                    color: 'white',
-                    padding: '8px 12px',
-                    borderRadius: '20px',
-                    fontSize: '0.85rem',
-                    fontWeight: '500'
-                  }}
-                >
+                <div className="spacedetail-image-counter">
                   {selectedImage + 1} / {images.length}
                 </div>
               )}
@@ -139,23 +128,12 @@ export default function SpaceDetail() {
                   <button
                     key={index}
                     onClick={() => setSelectedImage(index)}
-                    className="btn p-0"
-                    style={{
-                      minWidth: '80px',
-                      height: '60px',
-                      border: selectedImage === index ? '3px solid var(--accent-text)' : '2px solid #e9ecef',
-                      borderRadius: '8px',
-                      overflow: 'hidden'
-                    }}
+                    className={`btn p-0 spacedetail-thumbnail-btn ${selectedImage === index ? 'active' : ''}`}
                   >
                     <img
                       src={img || getPlaceholderImage(space.id, 80, 60)}
                       alt={`${space.name} view ${index + 1}`}
-                      style={{ 
-                        width: '100%', 
-                        height: '100%', 
-                        objectFit: 'cover' 
-                      }}
+                      className="spacedetail-thumbnail-img"
                       onError={handleImageError}
                     />
                   </button>
@@ -166,37 +144,29 @@ export default function SpaceDetail() {
 
           {/* Space header */}
           <div className="mb-4">
-            <h1 className="mb-3" style={{ fontSize: '2.5rem', fontWeight: '700' }}>
+            <h1 className="mb-3 spacedetail-title">
               {space.name}
             </h1>
             
-            <div className="d-flex align-items-center gap-4 mb-3">
+            <div className="spacedetail-meta">
               <div className="d-flex align-items-center text-muted">
-                <span style={{ fontSize: '1.1rem' }}>📍</span>
-                <span className="ms-2 fs-5">{space.location}</span>
+                <span className="spacedetail-location-icon">📍</span>
+                <span className="ms-2 spacedetail-location-text">{space.location}</span>
               </div>
               
               <div className="d-flex align-items-center">
-                <span style={{ fontSize: '1.1rem' }}>🕒</span>
+                <span className="spacedetail-hours-icon">🕒</span>
                 <span className="ms-2 text-muted">{space.hours}</span>
               </div>
               
-              <div 
-                className="badge px-3 py-2"
-                style={{
-                  background: currentPrice <= 200 ? '#22c55e' : currentPrice <= 350 ? '#f59e0b' : '#ef4444',
-                  color: 'white',
-                  fontSize: '1rem',
-                  fontWeight: '700'
-                }}
-              >
+              <div className={`badge px-3 py-2 ${getPriceBadgeClass(currentPrice)}`}>
                 ₱{currentPrice}
                 {selectedTimeSlot ? (
-                  <small className="ms-1" style={{ fontSize: '0.75rem', opacity: 0.9 }}>
+                  <small className="spacedetail-price-duration">
                     {selectedTimeSlot.name}
                   </small>
                 ) : (
-                  <small className="ms-1" style={{ fontSize: '0.75rem', opacity: 0.9 }}>
+                  <small className="spacedetail-price-duration">
                     base price
                   </small>
                 )}
@@ -207,7 +177,7 @@ export default function SpaceDetail() {
           {/* Description */}
           <div className="mb-4">
             <h4 className="mb-3">About This Space</h4>
-            <p className="fs-6 text-secondary lh-lg">
+            <p className="spacedetail-description">
               {space.description}
             </p>
           </div>
@@ -218,16 +188,7 @@ export default function SpaceDetail() {
             <div className="row g-2">
               {space.amenities.map((amenity, index) => (
                 <div key={index} className="col-auto">
-                  <span 
-                    className="badge bg-light text-dark d-flex align-items-center gap-2"
-                    style={{
-                      padding: '10px 16px',
-                      fontSize: '0.9rem',
-                      borderRadius: '25px',
-                      border: '1px solid #e9ecef',
-                      fontWeight: '500'
-                    }}
-                  >
+                  <span className="badge bg-light text-dark spacedetail-amenity">
                     <span>✓</span>
                     {amenity}
                   </span>
@@ -250,30 +211,24 @@ export default function SpaceDetail() {
                   const slotDescription = isNewFormat ? slot.description : ''
                   const slotDuration = isNewFormat ? slot.duration : ''
 
+                  const getSlotPriceClass = (price) => {
+                    if (price <= 200) return 'spacedetail-timeslot-price low'
+                    if (price <= 350) return 'spacedetail-timeslot-price medium'
+                    return 'spacedetail-timeslot-price high'
+                  }
+
                   return (
                     <div key={index} className="col-md-6">
                       <div 
-                        className={`card h-100 ${selectedTimeSlot?.name === slotName ? 'border-primary' : ''}`}
-                        style={{
-                          cursor: 'pointer',
-                          transition: 'all 0.2s',
-                          borderWidth: selectedTimeSlot?.name === slotName ? '2px' : '1px'
-                        }}
+                        className={`card h-100 spacedetail-timeslot-card ${selectedTimeSlot?.name === slotName ? 'selected' : ''}`}
                         onClick={() => handleTimeSlotSelect(isNewFormat ? slot : { name: slotName, price: slotPrice })}
                       >
                         <div className="card-body p-3">
                           <div className="d-flex justify-content-between align-items-start mb-2">
-                            <h6 className="card-title mb-0" style={{ fontWeight: '600' }}>
+                            <h6 className="card-title mb-0 spacedetail-timeslot-title">
                               {slotName}
                             </h6>
-                            <div 
-                              className="badge"
-                              style={{
-                                background: slotPrice <= 200 ? '#22c55e' : slotPrice <= 350 ? '#f59e0b' : '#ef4444',
-                                color: 'white',
-                                fontWeight: '600'
-                              }}
-                            >
+                            <div className={`badge ${getSlotPriceClass(slotPrice)}`}>
                               ₱{slotPrice}
                             </div>
                           </div>
@@ -322,7 +277,7 @@ export default function SpaceDetail() {
 
         {/* Right column - Booking form */}
         <div className="col-md-4">
-          <div className="position-sticky" style={{ top: '2rem' }}>
+          <div className="spacedetail-sticky-sidebar">
             <BookingForm 
               space={space} 
               selectedTimeSlot={selectedTimeSlot}

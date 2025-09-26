@@ -33,7 +33,7 @@ export default function Login() {
   }
 
   return (
-    <div className="container py-5" style={{ maxWidth: 400 }}>
+    <div className="container py-5">
       <h2 className="mb-4 text-center">Login</h2>
       {error && <div className="alert alert-danger">{error}</div>}
       <form onSubmit={handleSubmit} className="card p-4 shadow-sm">
