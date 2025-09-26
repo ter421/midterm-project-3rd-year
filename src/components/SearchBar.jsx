@@ -107,7 +107,7 @@ export default function SearchBar({ value, onChange }) {
         <input
           ref={inputRef}
           className="form-control mb-3"
-          placeholder="Search by name, location, or amenities..."
+          placeholder="Search by name or location..."
           value={value}
           onChange={handleInputChange}
           onFocus={handleFocus}
